@@ -93,13 +93,14 @@ class TipoTrianguloState extends State<TipoTriangulo> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "Tipo de Triángulo".toUpperCase(),
+            "Tipo de Triángulo",
             style: TextStyle(
               fontSize: 34,
               color: Colors.white,
             ),
           ),
-          backgroundColor: Colors.black,
+          centerTitle: true,
+          backgroundColor: Colors.deepPurple,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -110,8 +111,16 @@ class TipoTrianguloState extends State<TipoTriangulo> {
                 onPressed: () {
                   context.go('/');
                 },
-                child: const Text('Menu Principal'),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.house_outlined),
+                    SizedBox(width: 8),
+                    Text("Menú Principal"),
+                  ],
+                ),
               ),
+              SizedBox(height: 90),
               TextField(
                 controller: _controllerA,
                 decoration:

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-class QuadraticSolverScreen extends StatefulWidget {
+import 'package:go_router/go_router.dart';
+
+class CalculadoraRaices extends StatefulWidget {
   @override
-  _QuadraticSolverScreenState createState() => _QuadraticSolverScreenState();
+  _CalculadoraRaicesState createState() => _CalculadoraRaicesState();
 }
 
-class _QuadraticSolverScreenState extends State<QuadraticSolverScreen> {
+class _CalculadoraRaicesState extends State<CalculadoraRaices> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _aController = TextEditingController();
   final TextEditingController _bController = TextEditingController();
   final TextEditingController _cController = TextEditingController();
 
-  String _result = "";
+  String _resultado = "";
 
   void _solveQuadratic() {
     final double? a = double.tryParse(_aController.text);
@@ -21,35 +23,35 @@ class _QuadraticSolverScreenState extends State<QuadraticSolverScreen> {
 
     if (a == null || b == null || c == null) {
       setState(() {
-        _result = "Por favor, ingrese valores válidos para A, B y C.";
+        _resultado = "Por favor, ingrese valores válidos para A, B y C.";
       });
       return;
     }
 
     if (a == 0) {
       setState(() {
-        _result =
+        _resultado =
             "El coeficiente A no corresponde a una ecuación de segundo grado.";
       });
       return;
     }
 
-    final double discriminant = pow(b, 2) - 4 * a * c;
+    final double discriminante = pow(b, 2) - 4 * a * c;
 
-    if (discriminant < 0) {
+    if (discriminante < 0) {
       setState(() {
-        _result = "La solución es imaginaria (discriminante < 0).";
+        _resultado = "La solución es imaginaria (discriminante < 0).";
       });
-    } else if (discriminant == 0) {
-      final double root = -b / (2 * a);
+    } else if (discriminante == 0) {
+      final double raiz = -b / (2 * a);
       setState(() {
-        _result = "La ecuación tiene una raíz única: $root";
+        _resultado = "La ecuación tiene una raíz única: $raiz";
       });
     } else {
-      final double root1 = (-b + sqrt(discriminant)) / (2 * a);
-      final double root2 = (-b - sqrt(discriminant)) / (2 * a);
+      final double raiz1 = (-b + sqrt(discriminante)) / (2 * a);
+      final double raiz2 = (-b - sqrt(discriminante)) / (2 * a);
       setState(() {
-        _result = "Las soluciones son: $root1 y $root2";
+        _resultado = "Las soluciones son: $raiz1 y $raiz2";
       });
     }
   }
@@ -66,6 +68,20 @@ class _QuadraticSolverScreenState extends State<QuadraticSolverScreen> {
           key: _formKey,
           child: Column(
             children: [
+              ElevatedButton(
+                onPressed: () {
+                  context.go('/');
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.house_outlined),
+                    SizedBox(width: 8),
+                    Text("Menú Principal"),
+                  ],
+                ),
+              ),
+              SizedBox(height: 16),
               TextFormField(
                 controller: _aController,
                 keyboardType: TextInputType.number,
@@ -110,7 +126,7 @@ class _QuadraticSolverScreenState extends State<QuadraticSolverScreen> {
               ),
               SizedBox(height: 20),
               Text(
-                _result,
+                _resultado,
                 style: TextStyle(fontSize: 16, color: Colors.blue),
                 textAlign: TextAlign.center,
               ),

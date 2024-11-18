@@ -62,6 +62,7 @@ flutter:
     - assets/images/equilatero.png
     - assets/images/escaleno.png
     - assets/images/isosceles.png
+    - assets/images/camisa.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

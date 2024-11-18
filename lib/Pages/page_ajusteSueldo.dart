@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class Sueldo extends StatefulWidget {
+class AjusteSueldo extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => SueldoState();
 }
 
-class SueldoState extends State<Sueldo> {
+class SueldoState extends State<AjusteSueldo> {
   // Controladores para la entrada de campos de texto
   final TextEditingController _controllerTiempo = TextEditingController();
   final TextEditingController _controllerSueldo = TextEditingController();
@@ -74,13 +74,14 @@ class SueldoState extends State<Sueldo> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Calcular Sueldo',
+            'Ajuste de Sueldo',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 34,
               color: Colors.white,
             ),
           ),
-          backgroundColor: Colors.deepPurple,
+          centerTitle: true,
+          backgroundColor: const Color.fromARGB(255, 0, 152, 20),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -91,8 +92,16 @@ class SueldoState extends State<Sueldo> {
                 onPressed: () {
                   context.go('/');
                 },
-                child: const Text('Menu Principal'),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.house_outlined),
+                    SizedBox(width: 8),
+                    Text("Menú Principal"),
+                  ],
+                ),
               ),
+              SizedBox(height: 90),
               TextField(
                 controller: _controllerTiempo,
                 decoration: const InputDecoration(
@@ -113,7 +122,17 @@ class SueldoState extends State<Sueldo> {
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: calcularSueldo,
-                child: const Text('Calcular sueldo ajustado'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 137, 255, 141),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.loop),
+                    SizedBox(width: 8),
+                    Text("Calcular el sueldo ajustado"),
+                  ],
+                ),
               ),
               SizedBox(height: 16),
               Text(
@@ -133,6 +152,6 @@ class SueldoState extends State<Sueldo> {
 
 void main() {
   runApp(MaterialApp(
-    home: Sueldo(),
+    home: AjusteSueldo(),
   ));
 }

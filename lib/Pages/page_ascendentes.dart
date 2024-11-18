@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
 
 class Ascendentes extends StatefulWidget {
   @override
@@ -72,6 +73,20 @@ class AscendentesState extends State<Ascendentes>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            ElevatedButton(
+                onPressed: () {
+                  context.go('/');
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.house_outlined),
+                    SizedBox(width: 8),
+                    Text("Menú Principal"),
+                  ],
+                ),
+              ),
+            const SizedBox(height:16),
             TextField(
               controller: _controllerPrimerNumero,
               keyboardType: TextInputType.number,

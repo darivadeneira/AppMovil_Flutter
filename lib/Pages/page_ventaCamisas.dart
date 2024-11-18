@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 class Venta extends StatefulWidget {
   @override
@@ -60,21 +61,37 @@ class VentaState extends State<Venta> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Venta de Camisas".toUpperCase(),
+          "Venta de Camisas",
           style: TextStyle(
             fontSize: 34,
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.black,
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 3, 96, 120),
       ),
       body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network(
-                  'https://static.vecteezy.com/system/resources/thumbnails/048/805/089/small/a-white-shirt-free-png.png'),
+              ElevatedButton(
+                onPressed: () {
+                  context.go('/');
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.house_outlined),
+                    SizedBox(width: 8),
+                    Text("Menú Principal"),
+                  ],
+                ),
+              ),
+              SizedBox(height: 50),
+              Image.asset('assets/images/camisa.png',
+                  width: 200, height: 200, fit: BoxFit.cover),
+              SizedBox(height: 30),
               TextField(
                 controller: _controllerNumCamisas,
                 keyboardType: TextInputType.number,

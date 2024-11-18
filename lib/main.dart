@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tipo_triangulo/Pages/Triangulo.dart';
-import 'package:tipo_triangulo/Pages/Sueldo.dart';
+import 'package:tipo_triangulo/Pages/page_tipoTriangulo.dart';
+import 'package:tipo_triangulo/Pages/page_ajusteSueldo.dart';
 import 'package:tipo_triangulo/config/router.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,64 +32,54 @@ class Rutas extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Rutas'),
-        //centrar el texto
         centerTitle: true,
       ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    context.go('/triangulo');
-                  },
-                  icon: const Icon(
-                    Icons.change_circle,
-                    size: 50,
-                  ),
-                ),
-                const SizedBox(height: 8.0),
-                const Text('Triángulo'),
-              ],
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          double iconSize = 50; // Tamaño fijo para los iconos
+          double spacing = 16.0; // Espaciado fijo entre los elementos
+
+          return Center(
+            child: SingleChildScrollView(
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: spacing, // Espaciado horizontal entre columnas
+                runSpacing: spacing, // Espaciado vertical entre filas
+                children: [
+                  _buildIconColumn(context, Icons.architecture, 'Triángulo', '/triangulo', iconSize),
+                  _buildIconColumn(context, Icons.loop, 'Ajuste de Sueldo', '/ajusteSueldo', iconSize),
+                  _buildIconColumn(context, Icons.shopping_cart, 'Venta Camisas', '/camisas', iconSize),
+                  _buildIconColumn(context, Icons.attach_money, 'Pago de Sueldo', '/sueldo', iconSize),
+                  _buildIconColumn(context, Icons.arrow_upward, 'Orden Ascendente', '/ascendentes', iconSize),
+                  _buildIconColumn(context, Icons.calculate, 'Raíces Cuadráticas', '/ecuaciones', iconSize),
+                ],
+              ),
             ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    context.go('/sueldo');
-                  },
-                  icon: const Icon(
-                    Icons.attach_money,
-                    size: 50,
-                  ),
-                ),
-                const SizedBox(height: 8.0),
-                const Text('Sueldo'),
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    context.go('/camisas');
-                  },
-                  icon: const Icon(
-                    Icons.shopping_cart,
-                    size: 50,
-                  ),
-                ),
-                const SizedBox(height: 8.0),
-                const Text('Venta Camisas'),
-              ],
-            ),
-          ],
-        ),
+          );
+        },
       ),
+    );
+  }
+
+  Widget _buildIconColumn(
+    BuildContext context,
+    IconData icon,
+    String label,
+    String route,
+    double iconSize,
+  ) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton(
+          onPressed: () {
+            context.go(route);
+          },
+          icon: Icon(icon, size: iconSize),
+        ),
+        const SizedBox(height: 8.0),
+        Text(label, textAlign: TextAlign.center),
+      ],
     );
   }
 }
