@@ -71,6 +71,22 @@ class Rutas extends StatelessWidget {
                 const Text('Sueldo'),
               ],
             ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    context.go('/camisas');
+                  },
+                  icon: const Icon(
+                    Icons.shopping_cart,
+                    size: 50,
+                  ),
+                ),
+                const SizedBox(height: 8.0),
+                const Text('Venta Camisas'),
+              ],
+            ),
           ],
         ),
       ),
