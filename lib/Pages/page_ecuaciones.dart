@@ -16,7 +16,7 @@ class _CalculadoraRaicesState extends State<CalculadoraRaices> {
 
   String _resultado = "";
 
-  void _solveQuadratic() {
+  void _resolverEcuacion() {
     final double? a = double.tryParse(_aController.text);
     final double? b = double.tryParse(_bController.text);
     final double? c = double.tryParse(_cController.text);
@@ -119,7 +119,7 @@ class _CalculadoraRaicesState extends State<CalculadoraRaices> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    _solveQuadratic();
+                    _resolverEcuacion();
                   }
                 },
                 child: Text("Calcular Raíces"),
